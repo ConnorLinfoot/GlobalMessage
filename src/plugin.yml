@@ -1,0 +1,8 @@
+name: GlobalMessage
+description: GlobalMessage
+main: com.connorlinfoot.globalmessage.Main
+version: 1.0
+depends: [Vault]
+commands:
+  gmessage:
+    description: Send a global message
