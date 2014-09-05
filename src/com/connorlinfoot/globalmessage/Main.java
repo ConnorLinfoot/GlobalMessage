@@ -47,10 +47,17 @@ public class Main extends JavaPlugin implements Listener {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if( args.length < 2 ){
-
+            sender.sendMessage(ChatColor.RED + "Usage: /gmessage <group> <message>");
             return false;
         }
-        String message = "";
+
+        StringBuilder builder = new StringBuilder();
+        for (String value : args) {
+            builder.append(value).append(" ");
+        }
+        String message = builder.toString();
+        message = message.replace(args[0] + " ","");
+
         String group = args[0];
         Player[] players = Bukkit.getOnlinePlayers();
         ArrayList<String> pl = new ArrayList<String>();
@@ -67,6 +74,8 @@ public class Main extends JavaPlugin implements Listener {
         for( String s : pl ){
             Bukkit.getPlayer(s).sendMessage(message);
         }
+
+        sender.sendMessage("Your message was sent to " + pl.size() + " players");
 
         return true;
     }
